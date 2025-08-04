@@ -21,8 +21,10 @@ To perform a basic network reconnaissance scan using Nmap to identify devices an
 ## Command Executed
 ```bash
 nmap 192.168.152.0/24 -oN scan_results.txt
+```
 
 ## Output Summary
+```bash
 # Nmap 7.97 scan initiated Mon Aug  4 14:21:58 2025 as: nmap -oN scan_results.txt 192.168.152.0/24
 Nmap scan report for 192.168.152.209
 Host is up (0.000039s latency).
@@ -32,3 +34,4 @@ PORT     STATE SERVICE
 7000/tcp open  afs3-fileserver
 
 # Nmap done at Mon Aug  4 14:23:48 2025 -- 256 IP addresses (1 host up) scanned in 109.57 seconds
+```
