@@ -1,0 +1,188 @@
+{
+  "system": {
+    "ok": true,
+    "details": {
+      "name": "Linux",
+      "release": "6.12.33+kali-arm64",
+      "version": "#1 SMP Kali 6.12.33-1kali1 (2025-06-25)",
+      "distro": "Kali GNU/Linux Rolling"
+    },
+    "evidence": "PRETTY_NAME=\"Kali GNU/Linux Rolling\"\nNAME=\"Kali GNU/Linux\"\nVERSION_ID=\"2025.2\"\nVERSION=\"2025.2\"\nVERSION_CODENAME=kali-rolling\nID=kali\nID_LIKE=debian\nHOME_URL=\"https://www.kali.org/\"\nSUPPORT_URL=\"https://forums.kali.org/\"\nBUG_REPORT_URL=\"https://bugs.kali.org/\"\nANSI_COLOR=\"1;31\"\n"
+  },
+  "firewall": {
+    "ok": true,
+    "engine": "ufw",
+    "status": "active",
+    "rules_present": true,
+    "evidence": "Status: active\n\nTo                         Action      From\n--                         ------      ----\n22/tcp                     ALLOW       Anywhere                  \n23/tcp                     DENY        Anywhere                  \n23/tcp on lo               DENY        Anywhere                  \n22/tcp (v6)                ALLOW       Anywhere (v6)             \n23/tcp (v6)                DENY        Anywhere (v6)             \n23/tcp (v6) on lo          DENY        Anywhere (v6)"
+  },
+  "ssh": {
+    "ok": false,
+    "evidence": {
+      "port": "<unset>",
+      "permitrootlogin": "<unset>",
+      "passwordauthentication": "<unset>",
+      "x11forwarding": "yes",
+      "maxauthtries": "<unset>",
+      "permitemptypasswords": "<unset>",
+      "protocol": "<unset>"
+    },
+    "findings": [
+      "PasswordAuthentication should be 'no' (use keys)",
+      "X11Forwarding should be 'no'",
+      "MaxAuthTries should be <= 4"
+    ]
+  },
+  "file_perms": {
+    "ok": true,
+    "issues": [],
+    "evidence": {
+      "/etc/passwd": "0o644",
+      "/etc/shadow": "0o640",
+      "/etc/group": "0o644"
+    }
+  },
+  "password_policy": {
+    "ok": false,
+    "evidence": {
+      "login.defs": {
+        "PASS_MAX_DAYS": 99999,
+        "PASS_MIN_DAYS": 0,
+        "PASS_WARN_AGE": 7
+      },
+      "pwquality.minlen": null
+    },
+    "findings": [
+      "PASS_MAX_DAYS should be <= 365",
+      "PASS_MIN_DAYS should be >= 1"
+    ]
+  },
+  "suid_sgid": {
+    "ok": true,
+    "count": 35,
+    "samples": [
+      "/usr/bin/kismet_cap_hak5_wifi_coconut",
+      "/usr/bin/kismet_cap_nxp_kw41z",
+      "/usr/bin/ssh-agent",
+      "/usr/bin/passwd",
+      "/usr/bin/kismet_cap_linux_bluetooth",
+      "/usr/bin/fusermount3",
+      "/usr/bin/ntfs-3g",
+      "/usr/bin/kismet_cap_nrf_51822",
+      "/usr/bin/rsh-redone-rsh",
+      "/usr/bin/sudo",
+      "/usr/bin/newgrp",
+      "/usr/bin/dotlockfile",
+      "/usr/bin/kismet_cap_ti_cc_2531",
+      "/usr/bin/mount",
+      "/usr/bin/pkexec"
+    ]
+  },
+  "open_ports": {
+    "ok": true,
+    "count": 3,
+    "samples": [
+      "udp   UNCONN 0      0      [fe80::7c90:e6ff:fec6:6a87]%eth0:546          [::]:*",
+      "tcp   LISTEN 0      128                             0.0.0.0:22        0.0.0.0:*",
+      "tcp   LISTEN 0      128                                [::]:22           [::]:*"
+    ]
+  },
+  "updates": {
+    "ok": false,
+    "upgradeable": 449,
+    "evidence": "7zip/kali-rolling 25.01+dfsg-1 arm64 [upgradable from: 24.09+dfsg-8]\napache2-bin/kali-rolling 2.4.65-3+b1 arm64 [upgradable from: 2.4.65-2]\napache2-data/kali-rolling 2.4.65-3 all [upgradable from: 2.4.65-2]\napache2-utils/kali-rolling 2.4.65-3+b1 arm64 [upgradable from: 2.4.65-2]\napache2/kali-rolling 2.4.65-3+b1 arm64 [upgradable from: 2.4.65-2]\napt-transport-https/kali-rolling 3.1.4+kali1 all [upgradable from: 3.0.3+kali1]\napt-utils/kali-rolling 3.1.4+kali1 arm64 [upgradable from: 3.0.3+kali1]\napt/kali-rolling 3.1.4+kali1 arm64 [upgradable from: 3.0.3+kali1]\narping/kali-rolling 2.26-1 arm64 [upgradable from: 2.25-1+b1]\natril-common/kali-rolling 1.26.2-5 all [upgradable from: 1.26.2-4]\natril/kali-rolling 1.26.2-5+b1 arm64 [upgradable from: 1.26.2-4]\nbase-files/kali-rolling 1:2025.3.0 arm64 [upgradable from: 1:2025.2.0]\nbind9-dnsutils/kali-rolling 1:9.20.11-4+b1 arm64 [upgradable from: 1:9.20.11-4]\nbind9-host/kali-rolling 1:9.20.11-4+b1 arm64 [upgradable from: 1:9.20.11-4]\nbind9-libs/kali-rolling 1:9.20.11-4+b1 arm64 [upgradable from: 1:9.20.11-4]\nbsdextrautils/kali-rolling 2.41.1-1 arm64 [upgradable from: 2.41-5]\nbsdutils/kali-rolling 1:2.41.1-1 arm64 [upgradable from: 1:2.41-5]\ncherrytree/kali-rolling 1.2.0+dfsg-1+b1 arm64 [upgradable from: 1.2.0+dfsg-1]\nchromium-common/kali-rolling 139.0.7258.127-2 arm64 [upgradable from: 138.0.7204.183-1]\nchromium-sandbox/kali-rolling 139.0.7258.127-2 arm64 [upgradable from: 138.0.7204.183-1]"
+  },
+  "auditd": {
+    "ok": false,
+    "active": false,
+    "enabled": false
+  },
+  "time_sync": {
+    "ok": true,
+    "services": {
+      "systemd-timesyncd": {
+        "active": true,
+        "enabled": true
+      },
+      "chronyd": {
+        "active": false,
+        "enabled": false
+      },
+      "ntpd": {
+        "active": false,
+        "enabled": false
+      }
+    }
+  },
+  "fail2ban": {
+    "ok": false,
+    "active": false,
+    "enabled": false
+  },
+  "selinux": {
+    "ok": true,
+    "evidence": "SELinux not available (likely Debian/Ubuntu)"
+  },
+  "score": {
+    "score": 47,
+    "max": 95,
+    "percent": 49.5,
+    "breakdown": {
+      "firewall": {
+        "ok": true,
+        "points": 10,
+        "weight": 10
+      },
+      "ssh": {
+        "ok": false,
+        "points": 0,
+        "weight": 15
+      },
+      "file_perms": {
+        "ok": true,
+        "points": 10,
+        "weight": 10
+      },
+      "password_policy": {
+        "ok": false,
+        "points": 0,
+        "weight": 10
+      },
+      "suid_sgid": {
+        "ok": true,
+        "points": 8,
+        "weight": 8
+      },
+      "open_ports": {
+        "ok": true,
+        "points": 8,
+        "weight": 8
+      },
+      "updates": {
+        "ok": false,
+        "points": 0,
+        "weight": 8
+      },
+      "auditd": {
+        "ok": false,
+        "points": 0,
+        "weight": 8
+      },
+      "time_sync": {
+        "ok": true,
+        "points": 6,
+        "weight": 6
+      },
+      "fail2ban": {
+        "ok": false,
+        "points": 0,
+        "weight": 7
+      },
+      "selinux": {
+        "ok": true,
+        "points": 5,
+        "weight": 5
+      }
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "system": {
+    "ok": true,
+    "details": {
+      "name": "Darwin",
+      "release": "24.5.0",
+      "version": "Darwin Kernel Version 24.5.0: Tue Apr 22 19:48:46 PDT 2025; root:xnu-11417.121.6~2/RELEASE_ARM64_T8103",
+      "distro": ""
+    },
+    "evidence": ""
+  },
+  "firewall": {
+    "ok": false,
+    "engine": "none",
+    "status": "unknown",
+    "rules_present": false,
+    "evidence": "No firewall tooling found"
+  },
+  "ssh": {
+    "ok": false,
+    "evidence": {
+      "port": "<unset>",
+      "permitrootlogin": "<unset>",
+      "passwordauthentication": "<unset>",
+      "x11forwarding": "<unset>",
+      "maxauthtries": "<unset>",
+      "permitemptypasswords": "<unset>",
+      "protocol": "<unset>"
+    },
+    "findings": [
+      "PasswordAuthentication should be 'no' (use keys)",
+      "MaxAuthTries should be <= 4"
+    ]
+  },
+  "file_perms": {
+    "ok": false,
+    "issues": [
+      "/etc/shadow mode N/A > 0640"
+    ],
+    "evidence": {
+      "/etc/passwd": "0o644",
+      "/etc/shadow": "N/A",
+      "/etc/group": "0o644"
+    }
+  },
+  "password_policy": {
+    "ok": false,
+    "evidence": {
+      "login.defs": {},
+      "pwquality.minlen": null
+    },
+    "findings": [
+      "PASS_MAX_DAYS should be <= 365",
+      "PASS_MIN_DAYS should be >= 1",
+      "PASS_WARN_AGE should be >= 7"
+    ]
+  },
+  "suid_sgid": {
+    "ok": true,
+    "count": 13,
+    "samples": [
+      "/bin/ps",
+      "/usr/bin/write",
+      "/usr/bin/top",
+      "/usr/bin/atq",
+      "/usr/bin/crontab",
+      "/usr/bin/atrm",
+      "/usr/bin/newgrp",
+      "/usr/bin/su",
+      "/usr/bin/batch",
+      "/usr/bin/at",
+      "/usr/bin/quota",
+      "/usr/bin/sudo",
+      "/usr/bin/login"
+    ]
+  },
+  "open_ports": {
+    "ok": true,
+    "count": 0,
+    "samples": []
+  },
+  "updates": {
+    "ok": true,
+    "evidence": "no package manager detected"
+  },
+  "auditd": {
+    "ok": false,
+    "active": false,
+    "enabled": false
+  },
+  "time_sync": {
+    "ok": false,
+    "services": {
+      "systemd-timesyncd": {
+        "active": false,
+        "enabled": false
+      },
+      "chronyd": {
+        "active": false,
+        "enabled": false
+      },
+      "ntpd": {
+        "active": false,
+        "enabled": false
+      }
+    }
+  },
+  "fail2ban": {
+    "ok": false,
+    "active": false,
+    "enabled": false
+  },
+  "selinux": {
+    "ok": true,
+    "evidence": "SELinux not available (likely Debian/Ubuntu)"
+  },
+  "score": {
+    "score": 29,
+    "max": 95,
+    "percent": 30.5,
+    "breakdown": {
+      "firewall": {
+        "ok": false,
+        "points": 0,
+        "weight": 10
+      },
+      "ssh": {
+        "ok": false,
+        "points": 0,
+        "weight": 15
+      },
+      "file_perms": {
+        "ok": false,
+        "points": 0,
+        "weight": 10
+      },
+      "password_policy": {
+        "ok": false,
+        "points": 0,
+        "weight": 10
+      },
+      "suid_sgid": {
+        "ok": true,
+        "points": 8,
+        "weight": 8
+      },
+      "open_ports": {
+        "ok": true,
+        "points": 8,
+        "weight": 8
+      },
+      "updates": {
+        "ok": true,
+        "points": 8,
+        "weight": 8
+      },
+      "auditd": {
+        "ok": false,
+        "points": 0,
+        "weight": 8
+      },
+      "time_sync": {
+        "ok": false,
+        "points": 0,
+        "weight": 6
+      },
+      "fail2ban": {
+        "ok": false,
+        "points": 0,
+        "weight": 7
+      },
+      "selinux": {
+        "ok": true,
+        "points": 5,
+        "weight": 5
+      }
+    }
+  }
+}
